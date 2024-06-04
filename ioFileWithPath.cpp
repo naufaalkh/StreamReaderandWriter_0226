@@ -15,7 +15,7 @@ int main()
     // membuka file dalam mode menulis
     ofstream outfile;
     // menunjuk ke sebuah nama file
-    outfile.open("contohfile.txt");
+    outfile.open(NamaFile + ".txt", ios::out);
 
     cout << ">= Menulis file, \'q\' untuk keluar" << endl;
 
@@ -26,10 +26,33 @@ int main()
         // mendapatkan setiap karakter dalam satu baris
         getline(cin, baris);
         // loop akan berhenti jika anda memasukan q
-        if (baris == "q")
-            break;
+        if (baris == "q") break;
         // menulis dan memasukan nilai dari 'baris' ke dalam file
         outfile << baris << endl;
     }
     // selesai dalam menulis sekarang tutup filenya
+
+    // selesai dalam menulis sekarang tutup filenya
+    outfile.close();
+
+    // membuka file dalam mode membaca
+    ifstream infile;
+    // menunjuk kesebuah file
+    infile.open(NamaFile + ".txt", ios::in);
+
+    cout << endl << ">= Membuka dan membaca file" << endl;
+    // jika file ada maka
+    if (infile.is_open())
+        {  
+        // melakukan perulangan setiap baris
+        while (getline(infile, baris))
+        {
+            // dan tampilkan disini
+            cout << baris << '\n';
+        }
+        //tutup file tersebut setelah selesai
+        infile.close();
+        }
+        else cout << "unable to open fie";
+        return 0;
 }
